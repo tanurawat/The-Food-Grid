@@ -22,7 +22,8 @@
   "homepage": "https://github.com/tanurawat/namaste-react#readme",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
     "parcel": "^2.11.0",
