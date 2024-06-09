@@ -6,15 +6,17 @@ import { useState } from "react";
 
 const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
+  const [showItem, setShowItem] = useState(false);
   const { resId } = useParams();
 
   const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) return <Shimmer />;
 
-  const { itemCards } =
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card;
+  // const { itemCards } =
+  //   resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+  //     ?.card;
+
   const {
     name,
     costForTwoMessage,
@@ -23,7 +25,7 @@ const RestaurantMenu = () => {
     sla,
     feeDetails,
     totalRatingsString,
-  } = resInfo?.data.cards[2].card.card.info;
+  } = resInfo?.data.cards[2].card.card.info || {};
   // console.log(resInfo?.data.cards[2].card.card.info);
   const categories =
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -33,7 +35,7 @@ const RestaurantMenu = () => {
           "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
         );
       }
-    );
+    ) || [];
   // console.log(categories);
 
   return (
@@ -44,7 +46,7 @@ const RestaurantMenu = () => {
           <p className="text-md font-bold p-2">
             {avgRating} stars({totalRatingsString}) {costForTwoMessage}
           </p>
-          <p className="text-sm text-orange-500 font-bold p-2 pb-4 border-b-[1px] underline">
+          <p className="text-sm text-[#279C82] font-bold p-2 pb-4 border-b-[1px] underline">
             {cuisines.join(",")}
           </p>
           <p className="text-sm text-gray-600 p-2">
@@ -65,9 +67,10 @@ const RestaurantMenu = () => {
             <RestaurantCategory
               key={category?.card?.card?.title}
               data={category?.card?.card}
-              showItems={index == showIndex ? true : false}
+              showItems={index == showIndex && showItem}
               setShowIndex={() => {
                 setShowIndex(index);
+                setShowItem(index === showIndex ? !showItem : true);
               }}
             />
           );

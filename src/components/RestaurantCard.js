@@ -1,22 +1,31 @@
 import { CDN_URL } from "../utils/constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faPersonBiking } from "@fortawesome/free-solid-svg-icons/faPersonBiking";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
-    resData?.info;
+  const { cloudinaryImageId, name, cuisines, avgRating, sla } = resData?.info;
+  const arr = cuisines.join(", ");
 
   return (
-    <div className="res-card m-4 p-4 w-72 bg-gray-100 rounded-lg">
+    <div className="res-card transition hover:ease-in m-4 border-2 border-slate-100 hover:shadow-md  w-72 rounded-lg">
       <img
-        className="res-logo rounded-lg h-44 w-full"
+        className="res-logo rounded-t-lg h-44 w-full"
         src={CDN_URL + cloudinaryImageId}
         alt="res-logo"
       />
-      <h3 className="font-bold py-2 text-lg">{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating} stars</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{sla.deliveryTime} minutes</h4>
+      <div className="px-2 py-4 text-gray-700">
+        <h3 className="font-bold text-lg text-black truncate">{name}</h3>
+        <h4 className="truncate">{cuisines.join(", ")}</h4>
+
+        <h4>
+          <FontAwesomeIcon icon={faStar} className="text-[#279C82] pr-2" />
+          {avgRating} |{" "}
+          <FontAwesomeIcon icon={faPersonBiking} className="text-gray-700" />{" "}
+          {sla.deliveryTime} minutes
+        </h4>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ItemList from "./ItemList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
 
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   const handleClick = () => {
@@ -16,7 +18,13 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
           <span className="font-bold text-lg">
             {data.title}({data.itemCards.length})
           </span>
-          <span>🔽</span>
+          <span>
+            {showItems ? (
+              <FontAwesomeIcon icon={faSortUp} />
+            ) : (
+              <FontAwesomeIcon icon={faSortDown} />
+            )}
+          </span>
         </div>
         {/* accordian body */}
         {showItems && <ItemList items={data.itemCards} />}

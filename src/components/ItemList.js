@@ -4,6 +4,7 @@ const ItemList = ({ items }) => {
   return (
     <div className="px-2">
       {items.map((item) => {
+        console.log(item);
         return (
           <div
             key={item?.card?.info?.id}
@@ -29,7 +30,7 @@ const ItemList = ({ items }) => {
                 src={CDN_URL + item?.card?.info?.imageId}
                 alt=""
               />
-              <button className="px-6 py-1 font-bold text-green-600 text-lg rounded-md border-gray-200 border-[1px] shadow-sm absolute bottom-0 bg-white left-3">
+              <button className="px-6 py-1 font-bold text-[#279C82] text-lg rounded-md shadow-sm absolute bottom-0 bg-white left-3">
                 ADD
               </button>
             </div>
