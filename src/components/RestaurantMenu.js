@@ -44,7 +44,7 @@ const RestaurantMenu = () => {
         <h1 className="text-2xl font-bold my-4 p-2">{name}</h1>
         <div className="border-gray-200 border-[1px] rounded-lg shadow-md p-2">
           <p className="text-md font-bold p-2">
-            {avgRating} stars({totalRatingsString}) {costForTwoMessage}
+            {avgRating} stars({totalRatingsString}) | {costForTwoMessage}
           </p>
           <p className="text-sm text-[#279C82] font-bold p-2 pb-4 border-b-[1px] underline">
             {cuisines.join(",")}

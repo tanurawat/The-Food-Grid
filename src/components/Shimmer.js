@@ -1,5 +1,5 @@
 const Shimmer = () => {
-  const rows = 9;
+  const rows = 8;
   const shimmerItems = Array.from({ length: rows });
   return (
     <div className="flex flex-wrap justify-center">
